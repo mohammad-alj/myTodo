@@ -1,0 +1,47 @@
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+:root {
+	--color-primary: rgb(19, 56, 130);
+	--color-secondary: rgb(125, 125, 251);
+}
+
+html {
+	/* this makes the rem unit worth 10 pixels when using normal font size in browser */
+	font-size: 62.5%;
+}
+
+body {
+	font-family: 'Inter', sans-serif;
+	margin: 0;
+}
+
+/* typography */
+h1,
+h2,
+h3 {
+	color: var(--color-primary);
+	margin-bottom: 2rem;
+}
+
+h1 {
+	font-size: 7rem;
+}
+
+h2 {
+	font-size: 4.5rem;
+}
+
+h3 {
+	font-size: 3.5rem;
+}
+
+p {
+	font-size: 1.75rem;
+	color: rgb(52, 52, 52);
+}
