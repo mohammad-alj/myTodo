@@ -1,0 +1,24 @@
+/* typography */
+h1,
+h2,
+h3 {
+	color: var(--color-primary);
+	margin-bottom: 2rem;
+}
+
+h1 {
+	font-size: 7rem;
+}
+
+h2 {
+	font-size: 4.5rem;
+}
+
+h3 {
+	font-size: 3.5rem;
+}
+
+p {
+	font-size: 1.75rem;
+	color: rgb(52, 52, 52);
+}
