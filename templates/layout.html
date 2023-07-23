@@ -20,8 +20,12 @@
 			<div class="container">
 				<a href="/" class="nav__logo nav__link">myTodo</a>
 				<ul class="nav__items">
-					<li class="nav__item"><a href="/register" class="nav__link">register</a></li>
-					<li class="nav__item"><a href="" class="nav__link">log in</a></li>
+					{% if is_logged_in is sameas false %}
+					<li class="nav__item"><a href="/register" class="nav__link">Register</a></li>
+					<li class="nav__item"><a href="" class="nav__link">Log in</a></li>
+					{% elif is_logged_in is sameas true %}
+					<li class="nav__item"><a href="" class="nav__link">Acount</a></li>
+					{% endif %}
 				</ul>
 			</div>
 		</nav>
