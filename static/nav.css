@@ -1,0 +1,38 @@
+.nav {
+	background: rgb(40, 40, 40);
+	color: white;
+	font-size: 2rem;
+	padding: 10px;
+}
+
+.nav .container {
+	display: flex;
+	justify-content: space-between;
+	color: white;
+}
+
+.nav__link {
+	color: white;
+	text-decoration: none;
+	transition: color 0.15s;
+}
+
+.nav__items .nav__link:hover {
+	color: rgb(177, 177, 177);
+}
+
+.nav__logo {
+	font-size: 4rem;
+}
+
+.nav__items {
+	list-style: none;
+	display: flex;
+	gap: 3rem;
+}
+
+.nav__item {
+	display: inline;
+	position: relative;
+	top: 25%;
+}
