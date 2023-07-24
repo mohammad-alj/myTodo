@@ -4,10 +4,11 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
+	transition: all 0.15s;
 }
 
 :root {
-	--color-primary: rgb(19, 56, 130);
+	--color-primary: rgb(44, 150, 255);
 	--color-secondary: rgb(125, 125, 251);
 }
 
@@ -21,6 +22,12 @@ body {
 	margin: 0;
 }
 
+main {
+	height: calc(100vh - 69px);
+	background: rgb(255, 255, 255);
+	background: radial-gradient(circle, rgba(255, 255, 255, 1) 12%, rgba(204, 204, 204, 1) 98%);
+}
+
 .container {
 	width: 100%;
 	padding: 0 10rem;
@@ -30,4 +37,24 @@ body {
 	.container {
 		padding: 0 10px;
 	}
+}
+
+.btn {
+	padding: 10px 15px;
+	font-size: 1.5rem;
+	border-radius: 5px;
+	width: calc(fit-content + 5px);
+	border: 0;
+	cursor: pointer;
+	outline: none;
+}
+
+.btn--primary {
+	color: #fff;
+	background: var(--color-primary);
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+	background-color: rgb(112, 183, 255);
 }
