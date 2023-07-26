@@ -18,6 +18,7 @@ def register():
         if len(username) < 5 or len(username) > 16:
             return render_template('error.html', error_code=403, message='Username length must be between 5 and 16 characters.')
 
+        # validate password
         password = request.form.get('password')
         num_char_freq = {
             'numbers': 0,
@@ -32,6 +33,9 @@ def register():
         if num_char_freq['characters'] < 4 or num_char_freq['numbers'] < 2:
             return render_template('error.html', error_code=403, message='Password must atleast contain 4 characters and 2 numbers.')
 
+        # validate password confirmation
+        if password != request.form.get('confirm-password'):
+            return render_template('error.html', error_code=403, message='Passwords do not match.')
     return render_template("register.html", is_logged_in=logged_in)
 
 
