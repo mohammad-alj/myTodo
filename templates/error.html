@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    Error {{ error_code }}
+{% endblock %}
+
+{% block css %}
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            margin-top: 2rem;
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <h1 class="error">Error {{ error_code }}</h1>
+    <p class="error">{{ message }}</p>
+    <button class="btn btn--primary">go back</button>
+    <script>
+        document.querySelector('button').onclick = () => history.back()
+    </script>
+{% endblock %}
