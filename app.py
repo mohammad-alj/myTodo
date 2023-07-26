@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request
 from helpers import error
+from keys import SECRET_KEY
+
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = SECRET_KEY
 
 logged_in = False
 
@@ -21,16 +24,14 @@ def register():
 
         # validate password
         password = request.form.get('password')
-        num_char_freq = {
-            'numbers': 0,
-            'characters': 0
-        }
+        num_char_freq = dict(numbers=0, characters=0)
         for c in password:
-            if c.isascii():
+            if c.isalpha():
                 num_char_freq["characters"] += 1
-            elif c.isdigit:
+            elif c.isdigit():
                 num_char_freq['numbers'] += 1
 
+        print(num_char_freq)
         if num_char_freq['characters'] < 4 or num_char_freq['numbers'] < 2:
             return error(error_code=403, message='Password must atleast contain 4 characters and 2 numbers.')
 
