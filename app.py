@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+from helpers import error
 
 app = Flask(__name__)
 
@@ -16,7 +17,7 @@ def register():
         # validate username
         username = request.form.get('username')
         if len(username) < 5 or len(username) > 16:
-            return render_template('error.html', error_code=403, message='Username length must be between 5 and 16 characters.')
+            return error(error_code=403, message='Username length must be between 5 and 16 characters.')
 
         # validate password
         password = request.form.get('password')
@@ -31,11 +32,12 @@ def register():
                 num_char_freq['numbers'] += 1
 
         if num_char_freq['characters'] < 4 or num_char_freq['numbers'] < 2:
-            return render_template('error.html', error_code=403, message='Password must atleast contain 4 characters and 2 numbers.')
+            return error(error_code=403, message='Password must atleast contain 4 characters and 2 numbers.')
 
         # validate password confirmation
         if password != request.form.get('confirm-password'):
-            return render_template('error.html', error_code=403, message='Passwords do not match.')
+            return error(error_code=403, message='Passwords do not match.')
+
     return render_template("register.html", is_logged_in=logged_in)
 
 
