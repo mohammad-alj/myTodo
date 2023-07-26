@@ -12,6 +12,12 @@ def index():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if request.method == 'POST':
+        # validate username
+        username = request.form.get('username')
+        if len(username) < 5 or len(username) > 16:
+            return render_template('error.html', error_code=403, message='Username length must be between 5 and 16 characters.')
+
     return render_template("register.html", is_logged_in=logged_in)
 
 
