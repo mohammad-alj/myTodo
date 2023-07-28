@@ -15,7 +15,7 @@ db = SQL('sqlite:///database.db')
 
 @app.route("/")
 def index():
-    return render_template("index.html", is_logged_in=logged_in)
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -59,9 +59,9 @@ def register():
         session['user_id'] = user_id
 
         # tell that the user is registerd
-        return render_template('success.html', title='Acount created', heading='Your acount has been created!', is_logged_in=logged_in)
+        return render_template('success.html', title='Acount created', heading='Your acount has been created!')
 
-    return render_template("register.html", is_logged_in=logged_in)
+    return render_template("register.html")
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -87,7 +87,12 @@ def login():
         # all done
         session['user_id'] = user['user_id']
         return render_template('success.html', heading='You have logged in!', title='logged in')
-    return render_template("login.html", is_logged_in=logged_in)
+    return render_template("login.html")
+
+
+@app.route('/acount')
+def acount():
+    return render_template('acount.html')
 
 
 if __name__ == "__main__":
