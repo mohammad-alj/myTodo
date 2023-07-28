@@ -1,1 +1,10 @@
-{% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block main %} {% endblock %}
+{% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block main %} 
+
+{% if session['user_id'] %}
+    <h1>hello, user</h1>
+{% else %}
+    <h1>Create an acount to get started!</h1>
+    <a href="/register" class="btn btn--primary">register</a>
+{% endif %}
+
+{% endblock %}
