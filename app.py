@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from helpers import error
 from keys import SECRET_KEY
 from cs50 import SQL
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 app = Flask(__name__)
@@ -41,6 +42,10 @@ def register():
         # validate password confirmation
         if password != request.form.get('confirm-password'):
             return error(error_code=403, message='Passwords do not match.')
+
+        # all good now
+        db.execute(
+            'INSERT INTO users (username, hash) VALUES (?, ?)', username, generate_password_hash(password))
 
     return render_template("register.html", is_logged_in=logged_in)
 
