@@ -1,9 +1,8 @@
 from flask import Flask, render_template, request, session
-from helpers import error
+from helpers import error, login_required
 from keys import SECRET_KEY
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
-
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -91,6 +90,7 @@ def login():
 
 
 @app.route('/acount')
+@login_required
 def acount():
     return render_template('acount.html')
 
