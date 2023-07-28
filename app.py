@@ -1,12 +1,15 @@
 from flask import Flask, render_template, request
 from helpers import error
 from keys import SECRET_KEY
+from cs50 import SQL
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
 
 logged_in = False
+
+db = SQL('sqlite:///database.db')
 
 
 @app.route("/")
