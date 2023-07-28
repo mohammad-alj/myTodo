@@ -66,6 +66,27 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == 'POST':
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        # check if user in database
+
+        # check the username
+        rows = db.execute('SELECT * FROM users WHERE username = ?',
+                          username)
+        user = None if not rows else rows[0]
+
+        if not user:
+            return error(403, 'User does not exist.')
+
+        # check the password
+        if not check_password_hash(pwhash=user['hash'], password=password):
+            return error(403, 'Invalid password.')
+
+        # all done
+        session['user_id'] = user['user_id']
+        return render_template('success.html', heading='You have logged in!', title='logged in')
     return render_template("login.html", is_logged_in=logged_in)
 
 
