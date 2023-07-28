@@ -50,8 +50,13 @@ def register():
             return error(error_code=403, message='Passwords do not match.')
 
         # all good now
+
+        # add user to the database
         db.execute(
             'INSERT INTO users (username, hash) VALUES (?, ?)', username, generate_password_hash(password))
+
+        # tell that the user is registerd
+        return render_template('success.html', title='Acount registered', heading='Your acount has been created!', is_logged_in=logged_in)
 
     return render_template("register.html", is_logged_in=logged_in)
 

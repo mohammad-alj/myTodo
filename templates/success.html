@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block css %}
+    <style>
+        h1 {
+            color: green;
+        }
+
+        main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            margin-top: 3rem
+        }
+    </style>
+{% endblock %}
+
+{% block main %}
+    <h1>{{ heading }}</h1>
+    <a href="/" class="btn btn--primary">go home</a>
+{% endblock %}
