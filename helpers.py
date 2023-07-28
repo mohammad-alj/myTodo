@@ -7,7 +7,7 @@ def error(error_code, message):
 
 def login_required(f):
     def wrapper(*args, **kwargs):
-        if session['user_id']:
+        if 'user_id' in session:
             return f(*args, **kwargs)
         return redirect('/login')
     return wrapper
