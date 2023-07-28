@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, session
 from helpers import error
 from keys import SECRET_KEY
 from cs50 import SQL
@@ -52,11 +52,14 @@ def register():
         # all good now
 
         # add user to the database
-        db.execute(
+        user_id = db.execute(
             'INSERT INTO users (username, hash) VALUES (?, ?)', username, generate_password_hash(password))
 
+        # add session
+        session['user_id'] = user_id
+
         # tell that the user is registerd
-        return render_template('success.html', title='Acount registered', heading='Your acount has been created!', is_logged_in=logged_in)
+        return render_template('success.html', title='Acount created', heading='Your acount has been created!', is_logged_in=logged_in)
 
     return render_template("register.html", is_logged_in=logged_in)
 
