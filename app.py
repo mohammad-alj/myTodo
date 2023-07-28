@@ -26,6 +26,12 @@ def register():
         if len(username) < 5 or len(username) > 16:
             return error(error_code=403, message='Username length must be between 5 and 16 characters.')
 
+        # check if username already exists
+        user = db.execute(
+            'SELECT * FROM users WHERE username = ?', username)
+        if user:
+            return error(error_code=403, message='Username already exists.')
+
         # validate password
         password = request.form.get('password')
         num_char_freq = dict(numbers=0, characters=0)
