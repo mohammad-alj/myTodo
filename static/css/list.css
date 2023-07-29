@@ -24,3 +24,8 @@ main {
     bottom: 8px;
     left: 10px;
 }
+
+form {
+    border-top: 1px solid #000;
+    padding-top: 10px;
+}

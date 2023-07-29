@@ -1,5 +1,6 @@
 {% extends 'layout.html' %} {% block title %} Error {{ error_code }} {% endblock %} {% block css %}
 <link rel="stylesheet" href="../static/css/list.css" />
+<link rel="stylesheet" href="../static/css/form.css" />
 {% endblock %} {% block main %}
 <h1>{{ list.list_name }}</h1>
 <div class="list">
@@ -16,5 +17,19 @@
 			<button class="btn btn--green">complete</button>
 		</li>
 	</ul>
+	<form action="/acount/lists/{{ list.list_id }}" method="post">
+		<label class="form__label" for="task">add task</label>
+		<input
+			class="form__input"
+			type="text"
+			id="task"
+			autocomplete="off"
+			autofocus
+			name="task"
+			minlength="5"
+		/>
+
+		<button type="submit" class="btn btn--primary">add</button>
+	</form>
 </div>
 {% endblock %}
