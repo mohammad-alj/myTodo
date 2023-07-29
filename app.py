@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 from helpers import error, login_required, validate_username, validate_password
 from keys import SECRET_KEY
 from cs50 import SQL
@@ -119,6 +119,12 @@ def change_password():
 
     session['password'] = password
     return render_template('success.html', heading='Password updated!')
+
+
+@app.route('/acount/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 
 if __name__ == "__main__":
