@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request, session
-from helpers import error, login_required
+from flask import Flask, render_template, request, session, redirect
+from helpers import error, login_required, validate_username, validate_password
 from keys import SECRET_KEY
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -22,27 +22,15 @@ def register():
     if request.method == 'POST':
         # validate username
         username = request.form.get('username')
-        if len(username) < 5 or len(username) > 16:
-            return error(error_code=403, message='Username length must be between 5 and 16 characters.')
-
-        # check if username already exists
-        user = db.execute(
-            'SELECT * FROM users WHERE username = ?', username)
-        if user:
-            return error(error_code=403, message='Username already exists.')
+        usr_validation = validate_username(username)
+        if not usr_validation['success']:
+            return error(403, usr_validation['error_message'])
 
         # validate password
         password = request.form.get('password')
-        num_char_freq = dict(numbers=0, characters=0)
-        for c in password:
-            if c.isalpha():
-                num_char_freq["characters"] += 1
-            elif c.isdigit():
-                num_char_freq['numbers'] += 1
-
-        print(num_char_freq)
-        if num_char_freq['characters'] < 4 or num_char_freq['numbers'] < 2:
-            return error(error_code=403, message='Password must atleast contain 4 characters and 2 numbers.')
+        pwd_validation = validate_password(password)
+        if not pwd_validation['success']:
+            return error(403, pwd_validation['error_message'])
 
         # validate password confirmation
         if password != request.form.get('confirm-password'):
@@ -56,6 +44,7 @@ def register():
 
         # add session
         session['user_id'] = user_id
+        session['password'] = password
 
         # tell that the user is registerd
         return render_template('success.html', title='Acount created', heading='Your acount has been created!')
@@ -85,6 +74,7 @@ def login():
 
         # all done
         session['user_id'] = user['user_id']
+        session['password'] = password
         return render_template('success.html', heading='You have logged in!', title='logged in')
     return render_template("login.html")
 
@@ -92,7 +82,49 @@ def login():
 @app.route('/acount')
 @login_required
 def acount():
-    return render_template('acount.html')
+    user = db.execute('SELECT * FROM users WHERE user_id = ?',
+                      session['user_id'])[0]
+
+    return render_template('acount.html', username=user['username'], password=session['password'])
+
+
+@app.route('/acount/change-username', methods=['POST'])
+def change_username():
+    username = request.form.get('username')
+    usrnm_validation = validate_username(username)
+    if not usrnm_validation['success']:
+        return error(403, usrnm_validation['error_message'])
+
+    # change username in database
+    db.execute('UPDATE users SET username = ? WHERE user_id = ?',
+               username, session['user_id'])
+
+    return render_template('success.html', heading='Username updated!')
+
+
+@app.route('/acount/change-password', methods=['POST'])
+def change_password():
+    password = request.form.get('password')
+    pw_validation = validate_password(password)
+    if not pw_validation['success']:
+        return error(403, pw_validation['error_message'])
+
+    confirm_password = request.form.get('confirm-password')
+    if password != confirm_password:
+        return error(403, 'Passwords don\'t match!')
+
+    # change hash in database
+    db.execute('UPDATE users SET hash = ? WHERE user_id = ?',
+               generate_password_hash(password), session['user_id'])
+
+    session['password'] = password
+    return render_template('success.html', heading='Password updated!')
+
+
+@app.route('/acount/logout')
+def logout():
+    session.clear()
+    return redirect('/')
 
 
 if __name__ == "__main__":

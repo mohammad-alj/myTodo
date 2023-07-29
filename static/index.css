@@ -54,6 +54,24 @@ main {
 	background: var(--color-primary);
 }
 
+.btn--none {
+	color: #999;
+	background: none;
+	text-decoration: underline;
+}
+
+.btn--red-outline {
+	color: red;
+	background: none;
+	border: 1px solid red;
+}
+
+.btn--red-outline:hover {
+	color: #fff;
+	background: red;
+	border: 1px solid red;
+}
+
 .btn--primary:hover,
 .btn--primary:focus {
 	background-color: rgb(112, 183, 255);

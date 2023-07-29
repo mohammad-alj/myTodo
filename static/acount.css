@@ -1,0 +1,57 @@
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acount-info-container {
+    background: #ccc;
+    box-shadow: 0 0 50px 0 rgba(0, 0, 0, .5);
+    border-radius: 10px;
+    font-size: 2rem;
+    display: flex;
+    overflow: hidden;
+    gap: 1px
+}
+
+
+.change,
+.info {
+    padding: 3rem;
+    background: #fff;
+}
+
+.info-item {
+    margin-bottom: 1rem;
+}
+
+.username,
+.password {
+    font-size: 3rem;
+    margin-left: 2rem;
+}
+
+.change {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+#change-password-form,
+#change-username-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+#change-username-form {
+    margin-bottom: 3rem;
+}
+
+#change-password-form button,
+#change-username-form button {
+    width: fit-content;
+}
