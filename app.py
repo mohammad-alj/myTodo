@@ -167,5 +167,12 @@ def remove_task(list_id, task_id):
     return redirect(f'/lists/{list_id}')
 
 
+@app.route('/lists/remove-list/<list_id>', methods=['POST'])
+def remove_list(list_id):
+    db.execute('DELETE FROM lists WHERE list_id = ? AND user_id = ?',
+               list_id, session['user_id'])
+    return redirect('/')
+
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -33,4 +33,7 @@
 		<button type="submit" class="btn btn--primary" id="add-task">add</button>
 	</form>
 </div>
+<form action="/lists/remove-list/{{ list.list_id }}" method="post">
+	<button class="btn btn--red-outline">Delete list</button>
+</form>
 {% endblock %}
