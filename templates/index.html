@@ -1,38 +1,34 @@
-{% extends 'layout.html' %} {% block title %} Home {% endblock %}
+{% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block css %} {% if
+session['user_id'] %}
+<link rel="stylesheet" href="../static/css/home.css" />
+{% else %}
+<style>
+	main .container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
 
-{% block css %}
-    {% if session['user_id'] %}
-    <link rel="stylesheet" href="../static/home.css">
-    {% else %}
-        <style>
-            main .container {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            h1 {
-                text-align: center;
-            }
+	h1 {
+		text-align: center;
+	}
 
-            a {
-                width: fit-content;
-            }
-        </style>
-    {% endif %}
-{% endblock %}
-
-
-
-{% block main %}
-    <div class="container">
-        {% if session['user_id'] %}
-            <!-- TODO -->
-        {% else %}
-            <h1>Create an acount to get started!</h1>
-            <a href="/register" class="btn btn--primary">register</a>
-        {% endif %}
+	a {
+		width: fit-content;
+	}
+</style>
+{% endif %} {% endblock %} {% block main %}
+<div class="container">
+	{% if session['user_id'] %}
+    <!-- TODO -->
+    <div class="new-list-feild">
+        <h2>Create a new list</h2>
+        <button type="button">New list</button><img src="../static/images/plus.png" alt=""/>
     </div>
+    <hr></hr>
+	{% else %}
+	<h1>Create an acount to get started!</h1>
+	<a href="/register" class="btn btn--primary">register</a>
+	{% endif %}
+</div>
 {% endblock %}
-
-

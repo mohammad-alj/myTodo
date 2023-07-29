@@ -1,70 +1,67 @@
-{% extends 'layout.html' %}
-
-{% block title %}
-    Acount
-{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="../static/form.css">
-<link rel="stylesheet" href="../static/acount.css">
+{% extends 'layout.html' %} {% block title %} Acount {% endblock %} {% block css %}
+<link rel="stylesheet" href="../static/css/form.css" />
+<link rel="stylesheet" href="../static/css/acount.css" />
 <style>
-    .btn--red-outline {
-        margin-top: 1.5rem;
-        text-decoration: none;
-    }
+	.btn--red-outline {
+		margin-top: 1.5rem;
+		text-decoration: none;
+	}
 </style>
-{% endblock %}
-
-{% block main %}
-    <div class="acount-info-container">
-        <div class="change">
-            <div class="change-username-feild">
-                <button id="change-username" class="btn btn--primary">change username</button>
-                <form action="/acount/change-username" method="POST" id="change-username-form">
-                    <input class="form__input"
-                    type="text"
-                    id="username"
-                    autocomplete="off"
-                    autofocus
-                    name="username"
-                    placeholder="new username"
-                    minlength="5" >
-                    <button class="btn btn--primary">change username</button>
-                </form>
-            </div>
-            <div class="change-password-feild">
-                <button id="change-password" class="btn btn--primary">change password</button>
-                <form action="/acount/change-password" method="POST" id="change-password-form">
-                    <input class="form__input"
-                        type="text"
-                        autocomplete="off"
-                        autofocus
-                        name="password"
-                        placeholder="new password"
-                        minlength="6" >
-                    <input class="form__input"
-                        type="text"
-                        autocomplete="off"
-                        autofocus
-                        name="confirm-password"
-                        placeholder="confirm password"
-                        minlength="6" >
-                    <button class="btn btn--primary">change password</button>
-                </form>
-            </div>
-            <button class="btn btn--none" id="hide-forms" hidden>hide</button>
-            <a class="btn btn--red-outline" href="/acount/logout">Log out</a>
-        </div>
-        <div class="info">
-            <ul class="info-list">
-                <li class="info-item">
-                    username <span class="username">{{ username }}</span>
-                </li>
-                <li class="info-item">
-                    password <span class="password">{{ password }}</span><button class="btn btn--none" id="show">show password</button>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <script src="../static/acount.js"></script>
+{% endblock %} {% block main %}
+<div class="acount-info-container">
+	<div class="change">
+		<div class="change-username-feild">
+			<button id="change-username" class="btn btn--primary">change username</button>
+			<form action="/acount/change-username" method="POST" id="change-username-form">
+				<input
+					class="form__input"
+					type="text"
+					id="username"
+					autocomplete="off"
+					autofocus
+					name="username"
+					placeholder="new username"
+					minlength="5"
+				/>
+				<button class="btn btn--primary">change username</button>
+			</form>
+		</div>
+		<div class="change-password-feild">
+			<button id="change-password" class="btn btn--primary">change password</button>
+			<form action="/acount/change-password" method="POST" id="change-password-form">
+				<input
+					class="form__input"
+					type="text"
+					autocomplete="off"
+					autofocus
+					name="password"
+					placeholder="new password"
+					minlength="6"
+				/>
+				<input
+					class="form__input"
+					type="text"
+					autocomplete="off"
+					autofocus
+					name="confirm-password"
+					placeholder="confirm password"
+					minlength="6"
+				/>
+				<button class="btn btn--primary">change password</button>
+			</form>
+		</div>
+		<button class="btn btn--none" id="hide-forms" hidden>hide</button>
+		<a class="btn btn--red-outline" href="/acount/logout">Log out</a>
+	</div>
+	<div class="info">
+		<ul class="info-list">
+			<li class="info-item">username <span class="username">{{ username }}</span></li>
+			<li class="info-item">
+				password <span class="password">{{ password }}</span
+				><button class="btn btn--none" id="show">show password</button>
+			</li>
+		</ul>
+	</div>
+</div>
+<script src="../static/js/acount.js"></script>
 {% endblock %}
