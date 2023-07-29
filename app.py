@@ -3,8 +3,6 @@ from helpers import error, login_required, validate_username, validate_password
 from keys import SECRET_KEY
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
-import json
-import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -177,6 +175,13 @@ def remove_list(list_id):
     db.execute('DELETE FROM lists WHERE list_id = ? AND user_id = ?',
                list_id, session['user_id'])
     return redirect('/')
+
+
+@app.route('/search')
+def search():
+    if not 'user_id' in session:
+        return redirect('/login')
+    return render_template('search.html')
 
 
 if __name__ == "__main__":

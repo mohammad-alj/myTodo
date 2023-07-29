@@ -1,0 +1,22 @@
+{% extends 'layout.html' %} {% block title %} Search {% endblock %} {% block css %}
+<link rel="stylesheet" href="../static/css/form.css" />
+<link rel="stylesheet" href="../static/css/search.css" />
+{% endblock %} {% block main %}
+<div class="container">
+	<div class="search-feild">
+		<h1>Search for a task</h1>
+		<input type="text" id="target" autocomplete="off" autofocus class="form__input--solid" />
+	</div>
+	<div class="lists">
+		<div class="list">
+			<a href="/">
+				<h2>list title here</h2>
+				<ul class="tasks">
+					<li class="task">task here</li>
+					<li class="task">task here</li>
+				</ul>
+			</a>
+		</div>
+	</div>
+</div>
+{% endblock %}
