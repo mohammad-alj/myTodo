@@ -129,8 +129,9 @@ def logout():
 
 
 @app.route('/api/lists', methods=['POST', 'GET'])
-@login_required
 def lists():
+    if not session['user_id']:
+        return redirect('/login')
     if request.method == 'POST':
         list_name = request.form.get('list-name')
         db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',

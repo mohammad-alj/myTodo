@@ -23,3 +23,35 @@
 #create-list-form {
     padding-left: 5rem;
 }
+
+.lists {
+    display: grid;
+    gap: 5px;
+    margin-top: 3rem;
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 768px) {
+    .lists {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .lists {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .lists {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+}
+
+.list {
+    background: dodgerblue;
+    height: 10rem;
+    width: 100%;
+
+}
