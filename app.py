@@ -127,5 +127,14 @@ def logout():
     return redirect('/')
 
 
+@app.route('/lists', methods=['POST', 'GET'])
+def lists():
+    if request.method == 'POST':
+        list_name = request.form.get('list-name')
+        db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',
+                   session['user_id'], list_name)
+        return redirect('/')
+
+
 if __name__ == "__main__":
     app.run(debug=True)

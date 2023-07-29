@@ -1,5 +1,7 @@
 .new-list-btn {
+    position: relative;
     font-size: 2rem;
+    right: 15px;
 }
 
 .new-list-btn img {
