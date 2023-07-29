@@ -128,7 +128,7 @@ def logout():
     return redirect('/')
 
 
-@app.route('/lists', methods=['POST', 'GET'])
+@app.route('/api/lists', methods=['POST', 'GET'])
 @login_required
 def lists():
     if request.method == 'POST':
