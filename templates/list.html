@@ -2,9 +2,19 @@
 <link rel="stylesheet" href="../static/css/list.css" />
 {% endblock %} {% block main %}
 <h1>{{ list.list_name }}</h1>
-<ul>
-	<li>task 1</li>
-	<li>task 2</li>
-	<li>task 3</li>
-</ul>
+<div class="list">
+	<ul>
+		<li class="list__task">
+			<p>task 1</p>
+			<button class="btn btn--green">complete</button>
+		</li>
+		<li class="list__task">
+			<p>
+				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime animi voluptatum
+				cum officiis necessitatibus ut et quae nulla provident maiores?
+			</p>
+			<button class="btn btn--green">complete</button>
+		</li>
+	</ul>
+</div>
 {% endblock %}

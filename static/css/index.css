@@ -90,6 +90,16 @@ a {
 	color: #333;
 }
 
+.btn--green {
+	color: #fff;
+	background: green
+}
+
+.btn--green:hover {
+	color: #fff;
+	background: rgb(0, 171, 0)
+}
+
 
 .error {
 	color: red;
