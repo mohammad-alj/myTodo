@@ -56,6 +56,7 @@ def register():
 
         # add session
         session['user_id'] = user_id
+        session['password'] = password
 
         # tell that the user is registerd
         return render_template('success.html', title='Acount created', heading='Your acount has been created!')
@@ -85,6 +86,7 @@ def login():
 
         # all done
         session['user_id'] = user['user_id']
+        session['password'] = password
         return render_template('success.html', heading='You have logged in!', title='logged in')
     return render_template("login.html")
 
@@ -92,7 +94,10 @@ def login():
 @app.route('/acount')
 @login_required
 def acount():
-    return render_template('acount.html')
+    user = db.execute('SELECT * FROM users WHERE user_id = ?',
+                      session['user_id'])[0]
+
+    return render_template('acount.html', username=user['username'], password=session['password'])
 
 
 if __name__ == "__main__":

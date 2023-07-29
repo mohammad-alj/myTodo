@@ -54,6 +54,12 @@ main {
 	background: var(--color-primary);
 }
 
+.btn--none {
+	color: #999;
+	background: none;
+	text-decoration: underline;
+}
+
 .btn--primary:hover,
 .btn--primary:focus {
 	background-color: rgb(112, 183, 255);

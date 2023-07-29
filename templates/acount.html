@@ -4,6 +4,25 @@
     Acount
 {% endblock %}
 
+{% block css %}
+    <link rel="stylesheet" href="../static/acount.css">
+{% endblock %}
+
 {% block main %}
-    info here
+    <div class="acount-info-container">
+        <div class="change">
+            change
+        </div>
+        <div class="info">
+            <ul class="info-list">
+                <li class="info-item">
+                    username <span class="username">{{ username }}</span>
+                </li>
+                <li class="info-item">
+                    password <span class="password">{{ password }}</span><button class="btn btn--none" id="show">show password</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../static/acountInfo.js"/>
 {% endblock %}
