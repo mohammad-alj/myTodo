@@ -38,6 +38,7 @@
                     <button class="btn btn--primary">change password</button>
                 </form>
             </div>
+            <button class="btn btn--none" id="hide-forms" hidden>hide</button>
         </div>
         <div class="info">
             <ul class="info-list">
@@ -87,21 +88,30 @@
         const changeUsernameBtn = document.getElementById('change-username')
         const changeUsernameForm = document.getElementById('change-username-form')
 
-        let usrFormShown = false
-
         const changePasswordBtn = document.getElementById('change-password')
         const changePasswordForm = document.getElementById('change-password-form')
 
-        let pwFormShown = false
+        
+        const hideForms = document.getElementById('hide-forms')
 
         changeUsernameBtn.onclick = () => {
             changeUsernameForm.removeAttribute('hidden')
             changeUsernameBtn.setAttribute('hidden', '')
+            hideForms.removeAttribute('hidden')
         }
 
         changePasswordBtn.onclick = () => {
             changePasswordForm.removeAttribute('hidden')
             changePasswordBtn.setAttribute('hidden', '')
+            hideForms.removeAttribute('hidden')
+        }
+
+        hideForms.onclick = () => {
+            hideForms.setAttribute('hidden', '')
+            changeUsernameBtn.removeAttribute('hidden')
+            changePasswordBtn.removeAttribute('hidden')
+            changeUsernameForm.setAttribute('hidden', '')
+            changePasswordForm.setAttribute('hidden', '')
         }
     </script>
 {% endblock %}
