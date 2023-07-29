@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session
-from helpers import error, login_required
+from helpers import error, login_required, validate_username, validate_password
 from keys import SECRET_KEY
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -22,27 +22,15 @@ def register():
     if request.method == 'POST':
         # validate username
         username = request.form.get('username')
-        if len(username) < 5 or len(username) > 16:
-            return error(error_code=403, message='Username length must be between 5 and 16 characters.')
-
-        # check if username already exists
-        user = db.execute(
-            'SELECT * FROM users WHERE username = ?', username)
-        if user:
-            return error(error_code=403, message='Username already exists.')
+        usr_validation = validate_username(username)
+        if not usr_validation['success']:
+            return error(403, usr_validation['error_message'])
 
         # validate password
         password = request.form.get('password')
-        num_char_freq = dict(numbers=0, characters=0)
-        for c in password:
-            if c.isalpha():
-                num_char_freq["characters"] += 1
-            elif c.isdigit():
-                num_char_freq['numbers'] += 1
-
-        print(num_char_freq)
-        if num_char_freq['characters'] < 4 or num_char_freq['numbers'] < 2:
-            return error(error_code=403, message='Password must atleast contain 4 characters and 2 numbers.')
+        pwd_validation = validate_password(password)
+        if not pwd_validation['success']:
+            return error(403, pwd_validation['error_message'])
 
         # validate password confirmation
         if password != request.form.get('confirm-password'):
