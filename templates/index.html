@@ -1,8 +1,9 @@
 {% extends 'layout.html' %} {% block title %} Home {% endblock %}
 
 {% block css %}
+    {% if session['user_id'] %}
     <link rel="stylesheet" href="../static/home.css">
-    {% if not session['user_id'] %}
+    {% else %}
         <style>
             main .container {
                 display: flex;
@@ -26,7 +27,7 @@
 {% block main %}
     <div class="container">
         {% if session['user_id'] %}
-            <h1>hello, user</h1>
+            <!-- TODO -->
         {% else %}
             <h1>Create an acount to get started!</h1>
             <a href="/register" class="btn btn--primary">register</a>
