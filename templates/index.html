@@ -1,6 +1,7 @@
 {% extends 'layout.html' %} {% block title %} Home {% endblock %} {% block css %} {% if
 session['user_id'] %}
 <link rel="stylesheet" href="../static/css/home.css" />
+<link rel="stylesheet" href="../static/css/form.css" />
 {% else %}
 <style>
 	main .container {
@@ -20,12 +21,22 @@ session['user_id'] %}
 {% endif %} {% endblock %} {% block main %}
 <div class="container">
 	{% if session['user_id'] %}
-	<!-- TODO -->
 	<div class="new-list-feild">
 		<h2>Create a new list</h2>
 		<button type="button" class="btn btn--text new-list-btn">
 			New list<img src="../static/images/plus.png" alt="" width="25px" />
 		</button>
+		<form action="/lists" method="post">
+			<input
+				type="text"
+				autofocus
+				autocomplete="off"
+				placeholder="List name"
+				name="list-name"
+				class="form__input--solid"
+			/>
+			<button type="submit" class="btn btn--primary create-list-btn">Create list</button>
+		</form>
 	</div>
 	{% else %}
 	<h1>Create an acount to get started!</h1>

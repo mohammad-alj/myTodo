@@ -25,7 +25,8 @@ main {
 	margin-bottom: 5px;
 }
 
-.form__input {
+.form__input,
+.form__input--solid {
 	font-size: 2rem;
 	padding: 5px 10px;
 	border-radius: 5px;
@@ -34,11 +35,16 @@ main {
 	background: #eee;
 }
 
-.form__input:focus {
+.form__input:focus,
+.form__input--solid:focus {
 	border: 1px solid dodgerblue;
-	margin-top: 10px;
 	box-shadow: 0 0 0 5px rgb(139, 197, 255);
 }
+
+.form__input:focus {
+	margin-top: 10px;
+}
+
 
 button[type='submit'] {
 	margin-top: 2rem;
