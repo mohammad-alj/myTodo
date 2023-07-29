@@ -4,6 +4,7 @@ from keys import SECRET_KEY
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
 import json
+import requests
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -15,7 +16,10 @@ db = SQL('sqlite:///database.db')
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    lists = db.execute(
+        'SELECT * FROM lists WHERE user_id = ?', session['user_id'])
+    print(lists)
+    return render_template("index.html", lists=lists)
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -128,7 +132,7 @@ def logout():
     return redirect('/')
 
 
-@app.route('/api/lists', methods=['POST', 'GET'])
+@app.route('/create-lists', methods=['POST'])
 def lists():
     if not session['user_id']:
         return redirect('/login')
@@ -137,9 +141,6 @@ def lists():
         db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',
                    session['user_id'], list_name)
         return redirect('/')
-    user_lists = db.execute(
-        'SELECT * FROM lists WHERE user_id = ?', session['user_id'])
-    return json.dumps(user_lists)
 
 
 if __name__ == "__main__":
