@@ -102,5 +102,24 @@ def change_username():
     return render_template('success.html', heading='Username updated!')
 
 
+@app.route('/acount/change-password', methods=['POST'])
+def change_password():
+    password = request.form.get('password')
+    pw_validation = validate_password(password)
+    if not pw_validation['success']:
+        return error(403, pw_validation['error_message'])
+
+    confirm_password = request.form.get('confirm-password')
+    if password != confirm_password:
+        return error(403, 'Passwords don\'t match!')
+
+    # change hash in database
+    db.execute('UPDATE users SET hash = ? WHERE user_id = ?',
+               generate_password_hash(password), session['user_id'])
+
+    session['password'] = password
+    return render_template('success.html', heading='Password updated!')
+
+
 if __name__ == "__main__":
     app.run(debug=True)

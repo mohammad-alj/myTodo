@@ -7,6 +7,11 @@
 {% block css %}
 <link rel="stylesheet" href="../static/form.css">
 <link rel="stylesheet" href="../static/acount.css">
+<style>
+    .btn--red-outline {
+        margin-top: 1.5rem;
+    }
+</style>
 {% endblock %}
 
 {% block main %}
@@ -47,6 +52,7 @@
                 </form>
             </div>
             <button class="btn btn--none" id="hide-forms" hidden>hide</button>
+            <a class="btn btn--red-outline" href="/acount/logout">Log out</a>
         </div>
         <div class="info">
             <ul class="info-list">
