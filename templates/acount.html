@@ -5,13 +5,39 @@
 {% endblock %}
 
 {% block css %}
-    <link rel="stylesheet" href="../static/acount.css">
+<link rel="stylesheet" href="../static/form.css">
+<link rel="stylesheet" href="../static/acount.css">
 {% endblock %}
 
 {% block main %}
     <div class="acount-info-container">
         <div class="change">
-            change
+            <div class="change-username-feild">
+                <button id="change-username" class="btn btn--primary">change username</button>
+                <form action="/acount/username" hidden method="POST" id="change-username-form">
+                    <input class="form__input"
+                    type="text"
+                    id="username"
+                    autocomplete="off"
+                    autofocus
+                    name="username"
+                    minlength="5" >
+                    <button class="btn btn--primary">change username</button>
+                </form>
+            </div>
+            <div class="change-password-feild">
+                <button id="change-password" class="btn btn--primary">change password</button>
+                <form action="/acount/password" hidden method="POST" id="change-password-form">
+                    <input class="form__input"
+                    type="text"
+                    id="password"
+                    autocomplete="off"
+                    autofocus
+                    name="password"
+                    minlength="6" >
+                    <button class="btn btn--primary">change password</button>
+                </form>
+            </div>
         </div>
         <div class="info">
             <ul class="info-list">
@@ -24,5 +50,58 @@
             </ul>
         </div>
     </div>
-    <script src="../static/acountInfo.js"/>
+    <script>
+        // INFO SECTION
+        password = document.querySelector('.password');
+        let hidden = false;
+
+        const passwordContent = password.innerHTML
+        let dots = ''
+        for (let i = 0; i < passwordContent.length; i++) {
+            dots += '&bull;'
+        }
+
+        changeApperance()
+
+        function changeApperance() {
+            if (hidden === true) {
+                password.innerHTML = passwordContent;
+                hidden = false
+            } else {
+                password.innerHTML = dots
+                hidden = true
+            }
+        }
+
+        btn = document.getElementById('show')
+        btn.onclick = () => {
+            changeApperance()
+            if (hidden === true) {
+                btn.innerHTML = 'show password'
+            } else {
+                btn.innerHTML = 'hide password'
+            }
+        }
+
+        // CHANGE INFO SECTION
+        const changeUsernameBtn = document.getElementById('change-username')
+        const changeUsernameForm = document.getElementById('change-username-form')
+
+        let usrFormShown = false
+
+        const changePasswordBtn = document.getElementById('change-password')
+        const changePasswordForm = document.getElementById('change-password-form')
+
+        let pwFormShown = false
+
+        changeUsernameBtn.onclick = () => {
+            changeUsernameForm.removeAttribute('hidden')
+            changeUsernameBtn.setAttribute('hidden', '')
+        }
+
+        changePasswordBtn.onclick = () => {
+            changePasswordForm.removeAttribute('hidden')
+            changePasswordBtn.setAttribute('hidden', '')
+        }
+    </script>
 {% endblock %}
