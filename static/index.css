@@ -28,6 +28,10 @@ main {
 	background: radial-gradient(circle, rgba(255, 255, 255, 1) 12%, rgba(204, 204, 204, 1) 98%);
 }
 
+a {
+	text-decoration: none;
+}
+
 .container {
 	width: 100%;
 	padding: 0 10rem;
@@ -43,7 +47,7 @@ main {
 	padding: 10px 15px;
 	font-size: 1.5rem;
 	border-radius: 5px;
-	width: calc(fit-content + 5px);
+	width: calc(fit-content + 5px) !important;
 	border: 0;
 	cursor: pointer;
 	outline: none;
