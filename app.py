@@ -16,10 +16,11 @@ db = SQL('sqlite:///database.db')
 
 @app.route("/")
 def index():
-    lists = db.execute(
-        'SELECT * FROM lists WHERE user_id = ?', session['user_id'])
-    print(lists)
-    return render_template("index.html", lists=lists)
+    if 'user_id' in session:
+        lists = db.execute(
+            'SELECT * FROM lists WHERE user_id = ?', session['user_id'])
+        return render_template("index.html", lists=lists)
+    return render_template("index.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -136,6 +137,8 @@ def logout():
 def lists():
     if request.method == 'POST':
         list_name = request.form.get('list-name')
+        if not list_name:
+            return error(403, 'you must provide a name for the list.')
         list_id = db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',
                              session['user_id'], list_name)
         return redirect(f'/lists/{list_id}')
@@ -155,6 +158,8 @@ def list(list_id):
     elif request.method == 'POST':
 
         task_content = request.form.get('task')
+        if not task_content:
+            return error('you must provide a task.')
         db.execute(
             'INSERT INTO tasks (list_id, task_content) VALUES (?, ?)', list_id, task_content)
         return redirect(f'/lists/{list_id}')

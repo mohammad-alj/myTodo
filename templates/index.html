@@ -2,7 +2,13 @@
 session['user_id'] %}
 <link rel="stylesheet" href="../static/css/home.css" />
 <link rel="stylesheet" href="../static/css/form.css" />
-{% else %}
+{% if lists %}
+<style>
+	.new-list-feild {
+		border-bottom: 1px solid #000;
+	}
+</style>
+{% endif %} {% else %}
 <style>
 	main .container {
 		display: flex;
@@ -22,7 +28,7 @@ session['user_id'] %}
 <div class="container">
 	{% if session['user_id'] %}
 	<div class="new-list-feild">
-		<h2>Create a new list</h2>
+		<h2>Create a new Todo list</h2>
 		<button type="button" class="btn btn--text new-list-btn" id="create-list-btn">
 			New list<img src="../static/images/plus.png" alt="" width="25px" />
 		</button>
