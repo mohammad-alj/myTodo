@@ -1,5 +1,12 @@
 {% extends 'layout.html' %} {% block title %} Log in {% endblock %} {% block css %}
 <link rel="stylesheet" href="../static/css/form.css" />
+<style>
+	main {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+</style>
 {% endblock %} {% block main %}
 <form action="/login" method="post" class="form">
 	<div class="form-group">

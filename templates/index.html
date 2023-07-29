@@ -23,21 +23,25 @@ session['user_id'] %}
 	{% if session['user_id'] %}
 	<div class="new-list-feild">
 		<h2>Create a new list</h2>
-		<button type="button" class="btn btn--text new-list-btn">
+		<button type="button" class="btn btn--text new-list-btn" id="create-list-btn">
 			New list<img src="../static/images/plus.png" alt="" width="25px" />
 		</button>
-		<form action="/lists" method="post">
-			<input
-				type="text"
-				autofocus
-				autocomplete="off"
-				placeholder="List name"
-				name="list-name"
-				class="form__input--solid"
-			/>
-			<button type="submit" class="btn btn--primary create-list-btn">Create list</button>
-		</form>
+		<div id="list-form-container">
+			<form action="/lists" method="post" id="create-list-form">
+				<input
+					type="text"
+					autofocus
+					autocomplete="off"
+					placeholder="List name"
+					name="list-name"
+					class="form__input--solid"
+				/>
+				<button type="submit" class="btn btn--primary submit-list-btn">Create list</button>
+			</form>
+			<button class="btn btn--none" id="hide-form-btn">hide form</button>
+		</div>
 	</div>
+	<script src="../static/js/newListForm.js"></script>
 	{% else %}
 	<h1>Create an acount to get started!</h1>
 	<a href="/register" class="btn btn--primary">register</a>
