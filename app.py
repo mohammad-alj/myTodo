@@ -3,6 +3,7 @@ from helpers import error, login_required, validate_username, validate_password
 from keys import SECRET_KEY
 from cs50 import SQL
 from werkzeug.security import generate_password_hash, check_password_hash
+import json
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
@@ -128,12 +129,16 @@ def logout():
 
 
 @app.route('/lists', methods=['POST', 'GET'])
+@login_required
 def lists():
     if request.method == 'POST':
         list_name = request.form.get('list-name')
         db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',
                    session['user_id'], list_name)
         return redirect('/')
+    user_lists = db.execute(
+        'SELECT * FROM lists WHERE user_id = ?', session['user_id'])
+    return json.dumps(user_lists)
 
 
 if __name__ == "__main__":
