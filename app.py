@@ -178,10 +178,45 @@ def remove_list(list_id):
 
 
 @app.route('/search')
-def search():
+def get_lists():
     if not 'user_id' in session:
         return redirect('/login')
-    return render_template('search.html')
+
+    q = request.args.get('q')
+
+    if q:
+        list_output = []
+
+        tasks = db.execute('SELECT task_content, list_id FROM tasks WHERE task_content LIKE ?',
+                           '%' + request.args.get('q') + '%')
+
+        lists = db.execute(
+            'SELECT * FROM lists WHERE user_id = ?', session['user_id'])
+
+        for list in lists:
+            for task in tasks:
+                if list['list_id'] == task['list_id']:
+                    list_output.append(
+                        {'list_name': list['list_name'], 'list_id': list['list_id']})
+                    break
+
+        tasks_output = []
+        for list in lists:
+            if 'tasks' not in list:
+                list['tasks'] = []
+            for task in tasks:
+                if task['list_id'] == list['list_id']:
+                    tasks_output.append(task['task_content'])
+
+    else:
+        list_output = []
+        tasks_output = []
+    return render_template('lists.html', lists=list_output, tasks=tasks_output)
+
+
+@app.route('/lookup')
+def lookup():
+    return render_template('lookup.html')
 
 
 if __name__ == "__main__":

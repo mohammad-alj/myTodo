@@ -1,6 +1,13 @@
 {% extends 'layout.html' %} {% block title %} Search {% endblock %} {% block css %}
 <link rel="stylesheet" href="../static/css/form.css" />
 <link rel="stylesheet" href="../static/css/search.css" />
+<style>
+	img {
+		position: relative;
+		top: 5px;
+		margin-left: 10px;
+	}
+</style>
 {% endblock %} {% block main %}
 <div class="container">
 	<div class="search-feild">
@@ -9,8 +16,5 @@
 	</div>
 	<div class="lists" id="lists"></div>
 </div>
-<script>
-	target = document.getElementById('target');
-	target.addEventListener('keyup', () => {});
-</script>
+<script src="../static/js/lookup.js"></script>
 {% endblock %}

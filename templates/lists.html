@@ -1,10 +1,16 @@
 {% for list in lists %}
 <div class="list">
 	<a href="/lists/{{ list.list_id }}">
-		<h2>{{ list.list_name }}</h2>
+		<h2>
+			{{ list.list_name }}<img
+				src="../static/images/list-icon.jpg"
+				width="40px"
+				height="40px"
+			/>
+		</h2>
 		<ul class="tasks">
-			{% for task in list.tasks %}
-			<li class="task">{{ task.task_content }}</li>
+			{% for task in tasks %}
+			<li class="task">{{ task }}</li>
 			{% endfor %}
 		</ul>
 	</a>
