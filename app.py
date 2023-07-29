@@ -132,13 +132,24 @@ def logout():
     return redirect('/')
 
 
-@app.route('/acount/lists', methods=['POST'])
+@app.route('/lists', methods=['POST'])
 def lists():
     if request.method == 'POST':
         list_name = request.form.get('list-name')
-        db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',
-                   session['user_id'], list_name)
-        return redirect('/')
+        list_id = db.execute('INSERT INTO lists (user_id, list_name) VALUES (?, ?)',
+                             session['user_id'], list_name)
+        return redirect(f'/lists/{list_id}')
+
+
+@app.route('/lists/<list_id>', methods=['GET'])
+def list(list_id):
+    if request.method == 'GET':
+        list = db.execute(
+            'SELECT * FROM lists WHERE user_id = ? AND list_id = ?', session['user_id'], list_id)
+        if not list:
+            return error(403, 'you dont have that list')
+        list = list[0]
+        return render_template('list.html', list=list)
 
 
 if __name__ == "__main__":

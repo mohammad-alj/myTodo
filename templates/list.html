@@ -1,0 +1,10 @@
+{% extends 'layout.html' %} {% block title %} Error {{ error_code }} {% endblock %} {% block css %}
+<link rel="stylesheet" href="../static/css/list.css" />
+{% endblock %} {% block main %}
+<h1>{{ list.list_name }}</h1>
+<ul>
+	<li>task 1</li>
+	<li>task 2</li>
+	<li>task 3</li>
+</ul>
+{% endblock %}
