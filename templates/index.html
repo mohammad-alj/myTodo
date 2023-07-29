@@ -27,7 +27,7 @@ session['user_id'] %}
 			New list<img src="../static/images/plus.png" alt="" width="25px" />
 		</button>
 		<div id="list-form-container">
-			<form action="/create-lists" method="post" id="create-list-form">
+			<form action="/acount/lists" method="post" id="create-list-form">
 				<input
 					type="text"
 					autofocus
@@ -44,7 +44,7 @@ session['user_id'] %}
 	<div class="lists">
 		{% for list in lists %}
 		<div class="list">
-			<a href="/lists/{{ list.list_id }}">
+			<a href="/acount/lists/{{ list.list_id }}">
 				<div class="list__name">
 					<h3>{{ list.list_name}}</h3>
 					<img src="../static/images/list-icon.jpg" width="40px" height="40px" />
