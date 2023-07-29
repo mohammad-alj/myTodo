@@ -46,7 +46,6 @@ def validate_password(pw):
         elif c.isdigit():
             num_char_freq['numbers'] += 1
 
-    print(num_char_freq)
     if num_char_freq['characters'] < 4 or num_char_freq['numbers'] < 2:
         output['error_message'] = 'Password must atleast contain 4 characters and 2 numbers.'
 
