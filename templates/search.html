@@ -7,16 +7,10 @@
 		<h1>Search for a task</h1>
 		<input type="text" id="target" autocomplete="off" autofocus class="form__input--solid" />
 	</div>
-	<div class="lists">
-		<div class="list">
-			<a href="/">
-				<h2>list title here</h2>
-				<ul class="tasks">
-					<li class="task">task here</li>
-					<li class="task">task here</li>
-				</ul>
-			</a>
-		</div>
-	</div>
+	<div class="lists" id="lists"></div>
 </div>
+<script>
+	target = document.getElementById('target');
+	target.addEventListener('keyup', () => {});
+</script>
 {% endblock %}

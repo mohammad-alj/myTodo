@@ -19,6 +19,10 @@ main .container {
     border-radius: 10px;
 }
 
+.lists {
+    margin: 3rem 0;
+}
+
 .list h2 {
     padding: 1rem 3rem;
 }
