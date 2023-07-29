@@ -141,7 +141,7 @@ def lists():
         return redirect(f'/lists/{list_id}')
 
 
-@app.route('/lists/<list_id>', methods=['GET'])
+@app.route('/lists/<list_id>', methods=['GET', 'POST'])
 def list(list_id):
     if request.method == 'GET':
         list = db.execute(
@@ -149,7 +149,14 @@ def list(list_id):
         if not list:
             return error(403, 'you dont have that list')
         list = list[0]
-        return render_template('list.html', list=list)
+
+        tasks = db.execute('SELECT * FROM tasks WHERE list_id = ?', list_id)
+        return render_template('list.html', list=list, tasks=tasks)
+    elif request.method == 'POST':
+        task_content = request.form.get('task')
+        db.execute(
+            'INSERT INTO tasks (list_id, task_content) VALUES (?, ?)', list_id, task_content)
+        return redirect(f'/lists/{list_id}')
 
 
 if __name__ == "__main__":

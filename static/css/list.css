@@ -17,6 +17,7 @@ main {
     padding: none;
     font-size: 2rem;
     display: flex;
+    margin: 10px 0;
 }
 
 .btn--green {
@@ -28,4 +29,8 @@ main {
 form {
     border-top: 1px solid #000;
     padding-top: 10px;
+}
+
+form label {
+    margin-right: 10px;
 }

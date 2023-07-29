@@ -5,19 +5,14 @@
 <h1>{{ list.list_name }}</h1>
 <div class="list">
 	<ul>
+		{% for task in tasks %}
 		<li class="list__task">
-			<p>task 1</p>
+			<p>{{ task.task_content }}</p>
 			<button class="btn btn--green">complete</button>
 		</li>
-		<li class="list__task">
-			<p>
-				Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime animi voluptatum
-				cum officiis necessitatibus ut et quae nulla provident maiores?
-			</p>
-			<button class="btn btn--green">complete</button>
-		</li>
+		{% endfor %}
 	</ul>
-	<form action="/acount/lists/{{ list.list_id }}" method="post">
+	<form action="/lists/{{ list.list_id }}" method="post">
 		<label class="form__label" for="task">add task</label>
 		<input
 			class="form__input"
