@@ -1,0 +1,14 @@
+.new-list-btn {
+    font-size: 2rem;
+}
+
+.new-list-btn img {
+    position: relative;
+    top: 5px;
+    margin-left: 10px;
+}
+
+.new-list-feild {
+    padding-bottom: 3rem;
+    border-bottom: 1px solid #000;
+}
