@@ -153,10 +153,18 @@ def list(list_id):
         tasks = db.execute('SELECT * FROM tasks WHERE list_id = ?', list_id)
         return render_template('list.html', list=list, tasks=tasks)
     elif request.method == 'POST':
+
         task_content = request.form.get('task')
         db.execute(
             'INSERT INTO tasks (list_id, task_content) VALUES (?, ?)', list_id, task_content)
         return redirect(f'/lists/{list_id}')
+
+
+@app.route('/lists/<list_id>/remove_task/<task_id>', methods=['POST'])
+def remove_task(list_id, task_id):
+    db.execute(
+        'DELETE FROM tasks WHERE task_id = ? AND list_id = ?', task_id, list_id)
+    return redirect(f'/lists/{list_id}')
 
 
 if __name__ == "__main__":

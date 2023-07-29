@@ -21,9 +21,11 @@
 }
 
 #create-list-form {
-    display: none;
+    display: flex;
     padding-left: 5rem;
+    gap: 1rem
 }
+
 
 .lists {
     display: grid;

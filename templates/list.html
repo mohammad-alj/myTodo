@@ -8,14 +8,20 @@
 		{% for task in tasks %}
 		<li class="list__task">
 			<p>{{ task.task_content }}</p>
-			<button class="btn btn--green">complete</button>
+			<form
+				action="/lists/{{ list.list_id }}/remove_task/{{ task.task_id }}"
+				method="post"
+				class="complete-task-form"
+			>
+				<button type="submit" class="btn btn--green">complete</button>
+			</form>
 		</li>
 		{% endfor %}
 	</ul>
 	<form action="/lists/{{ list.list_id }}" method="post">
 		<label class="form__label" for="task">add task</label>
 		<input
-			class="form__input"
+			class="form__input--solid"
 			type="text"
 			id="task"
 			autocomplete="off"
@@ -24,7 +30,7 @@
 			minlength="5"
 		/>
 
-		<button type="submit" class="btn btn--primary">add</button>
+		<button type="submit" class="btn btn--primary" id="add-task">add</button>
 	</form>
 </div>
 {% endblock %}

@@ -22,8 +22,8 @@ main {
 
 .btn--green {
     position: relative;
-    bottom: 8px;
-    left: 10px;
+    bottom: 27px;
+    left: 10px
 }
 
 form {
@@ -33,4 +33,19 @@ form {
 
 form label {
     margin-right: 10px;
+}
+
+.complete-task-form {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#add-task {
+    margin-top: 0;
+}
+
+form {
+    border: none;
+    margin: none;
 }

@@ -43,14 +43,14 @@ session['user_id'] %}
 	</div>
 	<div class="lists">
 		{% for list in lists %}
-		<div class="list">
-			<a href="/lists/{{ list.list_id }}">
-				<div class="list__name">
-					<h3>{{ list.list_name}}</h3>
-					<img src="../static/images/list-icon.jpg" width="40px" height="40px" />
-				</div>
-			</a>
-		</div>
+
+		<a href="/lists/{{ list.list_id }}" class="list">
+			<div class="list__name">
+				<h3>{{ list.list_name}}</h3>
+				<img src="../static/images/list-icon.jpg" width="40px" height="40px" />
+			</div>
+		</a>
+
 		{% endfor %}
 	</div>
 	<script src="../static/js/newListForm.js"></script>
