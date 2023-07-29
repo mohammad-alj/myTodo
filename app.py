@@ -88,5 +88,19 @@ def acount():
     return render_template('acount.html', username=user['username'], password=session['password'])
 
 
+@app.route('/acount/change-username', methods=['POST'])
+def change_username():
+    username = request.form.get('username')
+    usrnm_validation = validate_username(username)
+    if not usrnm_validation['success']:
+        return error(403, usrnm_validation['error_message'])
+
+    # change username in database
+    db.execute('UPDATE users SET username = ? WHERE user_id = ?',
+               username, session['user_id'])
+
+    return render_template('success.html', heading='Username updated!')
+
+
 if __name__ == "__main__":
     app.run(debug=True)
