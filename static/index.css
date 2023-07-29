@@ -8,7 +8,7 @@
 }
 
 :root {
-	--color-primary: rgb(44, 150, 255);
+	--color-primary: rgb(0, 125, 243);
 	--color-secondary: rgb(125, 125, 251);
 }
 
@@ -85,7 +85,7 @@ main {
 h1,
 h2,
 h3 {
-	color: var(--color-primary);
+	color: rgb(0, 0, 0);
 	margin-bottom: 2rem;
 }
 
