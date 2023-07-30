@@ -22,11 +22,6 @@ body {
 	margin: 0;
 }
 
-main {
-	height: calc(100vh - 69px);
-	background: rgb(255, 255, 255);
-	background: radial-gradient(circle, rgba(255, 255, 255, 1) 12%, rgba(204, 204, 204, 1) 98%);
-}
 
 a {
 	text-decoration: none;
