@@ -1,7 +1,5 @@
 __pycache__/
+include/
 keys.py
-lib
-./lib64
-bin
-./include
-pyvenv.cfg
+databas.db
+lib64
